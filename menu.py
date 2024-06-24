@@ -22,10 +22,6 @@ def take_order(menu_items):
         print_menu(menu_items)
         menu_selection = input("Enter the number of the item you'd like to order: ")
         
-        if not menu_selection.isdigit():
-            print("Invalid input. Enter a number.")
-            continue
-        
         menu_selection = int(menu_selection)
         if menu_selection not in menu_items:
             print("Invalid selection. Choose a valid menu item.")
@@ -35,11 +31,11 @@ def take_order(menu_items):
         price = menu_items[menu_selection]["price"]
         
         quantity = input(f"How many {item_name}s would you like to order? (Default is 1 if invalid): ")
-        
-        if not quantity.isdigit():
-            quantity = 1
-        else:
+
+        try:
             quantity = int(quantity)
+        except ValueError:
+            quantity = 1
         
         order_menu.append({"Item name": item_name, "Price": price, "Quantity": quantity})
         
