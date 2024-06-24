@@ -1,13 +1,16 @@
 menu_items = {
     1: {"name": "Apple", 
-        "price": 0.49},
+        "price": 0.49,
+        "quantity": int},
     2: {"name": "Tea - Thai iced", 
-        "price": 3.99},
+        "price": 2.95,
+        "quantity": int},
     3: {"name": "Fried banana", 
-        "price": 4.49}
+        "price": 1.50,
+        "quantity": int}
 }
 
-order_list = []
+order_menu = []
 
 def print_menu(menu_items):
     print("Menu:")
@@ -38,24 +41,25 @@ def take_order(menu_items):
         else:
             quantity = int(quantity)
         
-        order_list.append({"Item name": item_name, "Price": price, "Quantity": quantity})
+        order_menu.append({"Item name": item_name, "Price": price, "Quantity": quantity})
         
         while True:
-            continue_ordering = input("Would you like to order anything else? (y/n): ").lower()
-            if continue_ordering == 'y':
+            place_order = input("Would you like to order anything else? (y/n): ").lower()
+            if place_order  == 'y':
                 break
-            elif continue_ordering == 'n':
+            elif place_order  == 'n':
                 return
             else:
-                print("Invalid input. Please enter 'y' or 'n'.")
+                print("Invalid input. Enter 'y' or 'n'.")
 
 def print_receipt():
     print("Item name                  | Price   | Quantity")
+    print()
     print("---------------------------|---------|----------")
     print()
 
     total_price = 0
-    for item in order_list:
+    for item in order_menu:
         item_name = item["Item name"]
         price = item["Price"]
         quantity = item["Quantity"]
@@ -68,9 +72,7 @@ def print_receipt():
 
 def main():
     take_order(menu_items)
-    print("Thank you for your order!")
     print_receipt()
 
 if __name__ == "__main__":
     main()
-
