@@ -1,7 +1,9 @@
 # python-challenge-1
 
 Here is my work for this second module.
-This was a fun project to go over since it tested my knowledge 
+This was a fun project to go over since it tested my knowledge on the fundamentals of python and on lists and definitions and using them in small loop settings.
+
+# Here is a list of menu items I used from the format given to us in the instructions
 
 menu_items = {
     1: {"name": "Apple", 
@@ -15,21 +17,26 @@ menu_items = {
         "quantity": int}
 }
 
+# Here is a an empty list to store the order given to us
+
 order_menu = []
+
+# The following function displays the menu in the terminal
 
 def print_menu(menu_items):
     print("Menu:")
     for key, value in menu_items.items():
         print(f"{key}. {value['name']} - ${value['price']:.2f}")
 
+# The following is a function to take an keep track of an order
+
 def take_order(menu_items):
     while True:
         print_menu(menu_items)
         menu_selection = input("Enter the number of the item you'd like to order: ")
-        
-        if not menu_selection.isdigit():
-            print("Invalid input. Enter a number.")
-            continue
+
+# The following is for proper validation of statements given
+## The try-except inputs is what I learned from w3schools (https://www.w3schools.com/python/python_try_except.asp, viewed 6/20/2024)
         
         menu_selection = int(menu_selection)
         if menu_selection not in menu_items:
@@ -41,10 +48,10 @@ def take_order(menu_items):
         
         quantity = input(f"How many {item_name}s would you like to order? (Default is 1 if invalid): ")
         
-        if not quantity.isdigit():
-            quantity = 1
-        else:
+        try:
             quantity = int(quantity)
+        except ValueError:
+            quantity = 1
         
         order_menu.append({"Item name": item_name, "Price": price, "Quantity": quantity})
         
@@ -56,6 +63,8 @@ def take_order(menu_items):
                 return
             else:
                 print("Invalid input. Enter 'y' or 'n'.")
+
+# Printing receipt and the format shown is what given to us on the module instructions
 
 def print_receipt():
     print("Item name                  | Price   | Quantity")
