@@ -74,5 +74,5 @@ def main():
     take_order(menu_items)
     print_receipt()
 
-if __name__ == "__main__":
-    main()
+take_order(menu_items)
+print_receipt()
